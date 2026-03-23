@@ -1,6 +1,6 @@
 E-commerce Backend
 =================
-!![E-commerce Backend](https://github.com/Salma-Salah420/E-Commerce-Backend-Project/blob/cb9dbd05157dd29481f8cd97b07c7edcdc84b819/E-commerce%20project.png)
+![E-commerce Backend](https://github.com/Salma-Salah420/E-Commerce-Backend-Project/blob/cb9dbd05157dd29481f8cd97b07c7edcdc84b819/E-commerce%20project.png)
 
 
 A robust E-commerce Backend application built using modern technologies, designed to handle product management, user authentication, orders, and payments for an online store.
