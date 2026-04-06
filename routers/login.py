@@ -1,16 +1,28 @@
+from fastapi import APIRouter, HTTPException
+from models.user_model import UserLogin
+from passlib.hash import bcrypt
+from utils.jwt_handler import create_jwt
+from database import get_connection
+
+router = APIRouter()
+
 @router.post("/login")
 def login(user: UserLogin):
+    conn = get_connection()
+    cursor = conn.cursor()
 
-    df = read_users()
+    # جلب المستخدم من DB حسب الايميل
+    cursor.execute("SELECT * FROM users WHERE email=?", (user.email,))
+    db_user = cursor.fetchone()
+    conn.close()
 
-    db_user = df[df["email"] == user.email]
-
-    if db_user.empty:
+    if not db_user:
         raise HTTPException(404, "User not found")
 
-    db_user = db_user.iloc[0]
-
-    if db_user["password"] != user.password:
+    # التحقق من كلمة السر المشفرة
+    if not bcrypt.verify(user.password, db_user["password"]):
         raise HTTPException(400, "Wrong password")
 
-    return {"message": "Login success"}
+    # إنشاء توكن JWT
+    token = create_jwt({"user_id": db_user["id"], "role": db_user["role"]})
+    return {"message": "Login success", "token": token}
