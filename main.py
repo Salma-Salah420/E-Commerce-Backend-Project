@@ -1,11 +1,12 @@
 from fastapi import FastAPI
-from excel import init_users                     
-from routers.auth_router import router as auth_router   
-from routers.users_router_CRUD import router as users_router  
+from routers import auth, users
+from database import init_db
+
+app = FastAPI(title="User Auth API with DB")
 
 
-app = FastAPI(title="E-Commerce API")
+init_db()
 
-app.include_router(auth_router)
-
-init_users()
+# تسجيل الـ routers
+app.include_router(auth.router)
+app.include_router(users.router)
