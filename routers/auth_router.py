@@ -1,46 +1,45 @@
 from fastapi import APIRouter, HTTPException
 from models.user_model import UserRegister, UserLogin
-from user_excel import read_users, save_users
 from utils.jwt_handler import create_jwt
 from passlib.hash import bcrypt
+from database import get_connection  # استخدام DB بدل Excel
 
 router = APIRouter(prefix="/auth", tags=["Auth"])
 
-# Register
+
 @router.post("/register")
 def register(user: UserRegister):
-    df = read_users()
+    conn = get_connection()
+    cursor = conn.cursor()
 
-    if user.email in df["email"].values:
+    # التحقق من وجود الايميل مسبقاً
+    cursor.execute("SELECT * FROM users WHERE email=?", (user.email,))
+    if cursor.fetchone():
         raise HTTPException(400, "Email already exists")
-
-    new_id = 1 if df.empty else int(df["id"].max()) + 1
 
     hashed_password = bcrypt.hash(user.password)
 
-    new_user = {
-        "id": new_id,
-        "email": user.email,
-        "password": hashed_password,
-        "role": "customer"
-    }
-
-   
-    df = pd.concat([df, pd.DataFrame([new_user])], ignore_index=True)
-    save_users(df)
+    cursor.execute(
+        "INSERT INTO users (email, password, role) VALUES (?, ?, ?)",
+        (user.email, hashed_password, "customer")
+    )
+    conn.commit()
+    conn.close()
 
     return {"message": "User created"}
 
-# Login
+
 @router.post("/login")
 def login(user: UserLogin):
-    df = read_users()
-    db_user = df[df["email"] == user.email]
+    conn = get_connection()
+    cursor = conn.cursor()
 
-    if db_user.empty:
+    cursor.execute("SELECT * FROM users WHERE email=?", (user.email,))
+    db_user = cursor.fetchone()
+    conn.close()
+
+    if not db_user:
         raise HTTPException(404, "User not found")
-
-    db_user = db_user.iloc[0]
 
     if not bcrypt.verify(user.password, db_user["password"]):
         raise HTTPException(400, "Wrong password")
