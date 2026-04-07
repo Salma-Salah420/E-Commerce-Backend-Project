@@ -8,4 +8,4 @@ class User(Base):
     email = Column(String, unique=True, index=True, nullable=False)
     password = Column(String, nullable=False)
     role = Column(String, nullable=False, default="customer")
-
+    orders = relationship("Order", back_populates="user")
