@@ -6,7 +6,6 @@ from models.category import Category  # كان ناقص
 from schemas.category import CategoryCreate, CategoryResponse
 from auth_dependency import get_current_user, admin_only
 
-router = APIRouter()
 router = APIRouter(tags=["Categories"])
 @router.post("/categories", response_model=CategoryResponse, status_code=201)
 def create_category(category: CategoryCreate, db: Session = Depends(get_db), current_user: dict = Depends(admin_only)):
