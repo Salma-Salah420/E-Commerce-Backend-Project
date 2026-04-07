@@ -6,13 +6,18 @@ from models.product import Product
 from schemas.product import ProductCreate, ProductResponse
 from auth_dependency import get_current_user, admin_only
 
-router = APIRouter()
 router = APIRouter(tags=["Products"])
 @router.post("/products", response_model=ProductResponse, status_code=201)
 def create_product(product: ProductCreate, db: Session = Depends(get_db), current_user: dict = Depends(admin_only)):
+    
+    if product.stock < 0:
+        raise HTTPException(status_code=400, detail="Stock cannot be negative")
+    
     new_product = Product(
         name=product.name,
-        category_id=product.category_id
+        category_id=product.category_id,
+        stock=product.stock   # ✅ ADD THIS
+
     )
     db.add(new_product)
     db.commit()
@@ -49,11 +54,16 @@ def get_product(id: int, db: Session = Depends(get_db), current_user: dict = Dep
 
 @router.put("/products/{id}", response_model=ProductResponse)
 def update_product(id: int, product: ProductCreate, db: Session = Depends(get_db), current_user: dict = Depends(admin_only)):
+    
+    if product.stock < 0:
+        raise HTTPException(status_code=400, detail="Stock cannot be negative")
+    
     existing = db.query(Product).filter(Product.id == id).first()
     if not existing:
         raise HTTPException(status_code=404, detail="Product not found")
     existing.name = product.name
     existing.category_id = product.category_id
+    existing.stock = product.stock   # ✅ ADD THIS
     db.commit()
     db.refresh(existing)
     return existing
