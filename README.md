@@ -1,55 +1,54 @@
-E-commerce Backend
-=================
-![E-commerce Backend](https://github.com/Salma-Salah420/E-Commerce-Backend-Project/blob/cb9dbd05157dd29481f8cd97b07c7edcdc84b819/E-commerce%20project.png)
+# E-Commerce Backend Project 🚀
 
+A scalable RESTful API backend system for an online e-commerce platform beautifully unified using **FastAPI** and **SQLAlchemy**.
 
-A robust E-commerce Backend application built using modern technologies, designed to handle product management, user authentication, orders, and payments for an online store.
+## 🚀 Quick Start & Testing
 
-Table of Contents
-================
-Project Overview
-Features
-Technologies Used
-Installation
-Environment Variables
-API Endpoints
-Usage
-Contributing
-License
+Follow these quick steps to get the app running and test it using the built-in Frontend Dashboard.
 
-Project Overview:
-================
+### 1. Install Dependencies
+Ensure you have `pip` installed, then run the following in the project root:
+```bash
+pip install -r requirements.txt
+```
 
-This project provides a backend solution for an online e-commerce platform. It allows users to:
+### 2. Start the Backend Server
+Run the FastAPI development server:
+```bash
+cd app
+uvicorn main:app --reload
+```
+*(The database `ecommerce.db` will be dynamically generated in the `app/` folder upon first run)*
 
-Browse products
-Manage a shopping cart
-Place orders
-Handle payments securely
-Admin management for products, orders, and users
+### 3. Test Using the Dashboard!
+We have bundled a sleek HTML frontend right into the project so you can visually test everything seamlessly.
+- Open the `frontend/index.html` file directly in your web browser (Chrome, Edge, Firefox).
+- The dashboard validates your token and natively allows you to visually test:
+  - Registering and logging in safely via tokens.
+  - Adding product categories (Admin Only)
+  - Submitting new products assigned to your categories (Admin Only)
 
-The project follows RESTful API architecture and ensures data integrity and security.
+> [!TIP]
+> **Testing Admin Accounts:** If you want to log in as an administrator to bypass the `403 Forbidden` limits on adding products and categories, simply ensure your email address contains the word "**admin**" when you register (e.g. *admin_test@example.com*). The system will automatically upgrade your privileges!
 
+### 4. Advanced API Documentation
+If you want to manually test raw API endpoints, you can access the automatically generated interactive documentation while the server is running:
+- **Swagger UI:** `http://localhost:8000/docs`
+- **ReDoc UI:** `http://localhost:8000/redoc`
 
-Features:
-==========
-User Authentication: JWT-based login and registration
-Product Management: CRUD operations for products
-Order Management: Create, update, and track orders
-Payment Integration: Stripe/PayPal integration (optional)
-Role-Based Access Control: Admin vs Customer permissions
-Error Handling & Validation: Consistent API responses
-Technologies Used
-Backend Framework: Node.js, Express.js
-Database: MongoDB / PostgreSQL (choose based on your implementation)
-Authentication: JWT (JSON Web Tokens)
-Payment Gateway: Stripe / PayPal (optional)
-Others: dotenv, bcrypt, nodemailer (for email notifications).
+---
 
-Team members and their Roles:
-============================
-1.Salma Salah
-2.Mariam Abdelfattah 
-3.Alaa Orabi
-4.Nada Waleed 
-5.Ahmed Tarek
+## Overview 
+This project expertly combined separate Authentication & Users logic seamlessly alongside Categories & Products logic. Instead of scattered architecture, it utilizes a deeply integrated **SQLite database**, robust JSON Pydantic serialization models (fully backward-compatible with legacy database strings via `Optional`), and native frontend DOM connections.
+
+## Features Included
+- **User Authentication:** Token-based secure registration and login (using JWT and pure `bcrypt`).
+- **Users Management:** Protected `/users/me` endpoint.
+- **Product Management:** Full CRUD actions, advanced filtering, backwards-compatibility error handling, and python-native schemas.
+- **Category Management:** Full CRUD actions for organizing products easily.
+
+## Tech Stack
+- **Framework:** FastAPI
+- **Database ORM:** SQLAlchemy (Using SQLite database)
+- **Data Validation:** Pydantic
+- **Security:** Pure `bcrypt` (secure hashing) & `pyjwt` (Authentication Tokens)
