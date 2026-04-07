@@ -3,8 +3,10 @@ from database import Base, engine
 import models.category
 import models.product
 import models.user
+import models.order
 from routes import categories, product, auth, users
 from fastapi.middleware.cors import CORSMiddleware
+from routes import orders
 
 app = FastAPI(title="Final E-Commerce API")
 
@@ -24,3 +26,4 @@ app.include_router(auth.router)
 app.include_router(users.router)
 app.include_router(categories.router)
 app.include_router(product.router)
+app.include_router(orders.router)
