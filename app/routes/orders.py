@@ -10,7 +10,7 @@ from auth_dependency import get_current_user, admin_only
 router = APIRouter(tags=["Orders"])
 
 
-# --- Create a new order (any authenticated user) ---
+# -- Create a new order (any authenticated user) --
 @router.post("/orders", response_model=OrderResponse, status_code=201)
 def create_order(
     order: OrderCreate,
@@ -116,7 +116,7 @@ def update_order_status(
     return order
 
 
-# --- Delete an order (Admin only) ---
+# --- Delete an order ( the Admin only) ---
 @router.delete("/orders/{order_id}", status_code=200)
 def delete_order(
     order_id: int,
