@@ -1,4 +1,4 @@
-# v0-e-commerce-frontend-app
+
 
 # 🚀 Full Stack Web Application (Next.js + FastAPI)
 
