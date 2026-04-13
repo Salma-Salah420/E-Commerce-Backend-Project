@@ -2,6 +2,9 @@
 
 # 🚀 Full Stack Web Application (Next.js + FastAPI)
 
+![image](https://github.com/Salma-Salah420/E-Commerce-Backend-Project/blob/d0d2fe07b708718f422ae0639e7e38b9299151f5/Screenshot%202026-04-13%20145321.png)
+
+
 ## 📌 Overview
 
 This is a **Full Stack Web Application** that combines a modern frontend with a high-performance backend.
