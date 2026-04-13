@@ -1,35 +1,144 @@
 # v0-e-commerce-frontend-app
 
-This is a [Next.js](https://nextjs.org) project bootstrapped with [v0](https://v0.app).
+# 🚀 Full Stack Web Application (Next.js + FastAPI)
 
-## Built with v0
+## 📌 Overview
 
-This repository is linked to a [v0](https://v0.app) project. You can continue developing by visiting the link below -- start new chats to make changes, and v0 will push commits directly to this repo. Every merge to `main` will automatically deploy.
+This is a **Full Stack Web Application** that combines a modern frontend with a high-performance backend.
 
-[Continue working on v0 →](https://v0.app/chat/projects/prj_vcg0Cyt15OTgL0bIXMOJA3EXWMAa)
+* 🖥️ Frontend built with **Next.js**
+* ⚡ Backend built with **FastAPI**
+* 🔗 RESTful API communication between frontend and backend
 
-## Getting Started
+---
 
-First, run the development server:
+## 🌐 Live Demo
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+👉 **Frontend Demo:** [Click Here](https://v0-e-commerce-frontend-app-lac.vercel.app/)
+👉 **Backend API Docs (Swagger):** [Click Here](https://your-backend-demo-link.com/docs)
+
+---
+
+## 🧩 Features
+------------------------
+
+* ⚡ Fast and responsive UI
+* 🔄 API integration between frontend and backend
+* 📊 Dynamic data rendering
+* 🧱 Scalable project structure
+* 🔍 Interactive API documentation (Swagger UI)
+
+---
+
+## 🏗️ Project Structure
+--------------------------
+```id="fs-fastapi-1"
+project-root/
+│
+├── frontend/          # Next.js frontend
+│   ├── app/
+│   ├── components/
+│   ├── hooks/
+│   ├── lib/
+│   └── public/
+│
+├── backend/           # FastAPI backend
+│   ├── app/
+│   │   ├── routers/
+│   │   ├── models/
+│   │   ├── schemas/
+│   │   └── main.py
+│   └── requirements.txt
+│
+└── README.md
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🛠️ Technologies Used
 
-## Learn More
+### Frontend:
 
-To learn more, take a look at the following resources:
+* Next.js
+* React
+* TypeScript
+* CSS / PostCSS / Tailwind
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-- [v0 Documentation](https://v0.app/docs) - learn about v0 and how to use it.
+### Backend:
 
-<a href="https://v0.app/chat/api/kiro/clone/Salma-Salah420/v0-e-commerce-frontend-app" alt="Open in Kiro"><img src="https://pdgvvgmkdvyeydso.public.blob.vercel-storage.com/open%20in%20kiro.svg?sanitize=true" /></a>
+* FastAPI
+* Python
+* Pydantic
+* Uvicorn
+
+---
+
+## ⚙️ Getting Started
+-------------------------
+
+### 1️⃣ Clone the repository
+
+```bash id="clone-fastapi"
+git clone https://github.com/your-username/your-repo.git
+cd your-repo
+```
+
+---
+
+## ▶️ Run the Project
+
+### 🔹 Run Backend (FastAPI)
+
+```bash id="run-backend"
+cd backend
+pip install -r requirements.txt
+uvicorn app.main:app --reload
+```
+
+---
+
+### 🔹 Run Frontend (Next.js)
+
+```bash id="run-frontend"
+cd frontend
+npm install
+npm run dev
+```
+
+---
+
+## 🌍 Application URLs
+
+* Frontend: http://localhost:3000
+* Backend API: http://localhost:8000
+* API Docs (Swagger): http://localhost:8000/docs
+
+---
+
+## 🔐 Environment Variables
+
+Create a `.env` file in the backend folder:
+
+```env id="env-fastapi"
+DATABASE_URL=your_database_url
+SECRET_KEY=your_secret_key
+```
+
+---
+
+## 📦 Build for Production
+
+### Frontend
+
+```bash id="build-front"
+npm run build
+npm start
+```
+
+---
+Team Members:
+Mariam Abdelfattah 
+Salma Salah 
+Nada Walied 
+Alaa Orabie
+Ahmed Tarek
