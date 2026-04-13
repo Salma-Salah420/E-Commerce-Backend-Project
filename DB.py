@@ -1,6 +1,6 @@
 import sqlite3
 
-هنا زميلك يحط اسم الداتا بيز اللي هو عاملها
+# put the DB name you have created
 DB_FILE = "YOUR_DATABASE_FILE.db"  
 
 def get_connection():

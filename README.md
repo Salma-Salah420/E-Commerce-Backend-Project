@@ -1,54 +1,35 @@
-# E-Commerce Backend Project 🚀
+# v0-e-commerce-frontend-app
 
-A scalable RESTful API backend system for an online e-commerce platform beautifully unified using **FastAPI** and **SQLAlchemy**.
+This is a [Next.js](https://nextjs.org) project bootstrapped with [v0](https://v0.app).
 
-## 🚀 Quick Start & Testing
+## Built with v0
 
-Follow these quick steps to get the app running and test it using the built-in Frontend Dashboard.
+This repository is linked to a [v0](https://v0.app) project. You can continue developing by visiting the link below -- start new chats to make changes, and v0 will push commits directly to this repo. Every merge to `main` will automatically deploy.
 
-### 1. Install Dependencies
-Ensure you have `pip` installed, then run the following in the project root:
+[Continue working on v0 →](https://v0.app/chat/projects/prj_vcg0Cyt15OTgL0bIXMOJA3EXWMAa)
+
+## Getting Started
+
+First, run the development server:
+
 ```bash
-pip install -r requirements.txt
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
 ```
 
-### 2. Start the Backend Server
-Run the FastAPI development server:
-```bash
-cd app
-uvicorn main:app --reload
-```
-*(The database `ecommerce.db` will be dynamically generated in the `app/` folder upon first run)*
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-### 3. Test Using the Dashboard!
-We have bundled a sleek HTML frontend right into the project so you can visually test everything seamlessly.
-- Open the `frontend/index.html` file directly in your web browser (Chrome, Edge, Firefox).
-- The dashboard validates your token and natively allows you to visually test:
-  - Registering and logging in safely via tokens.
-  - Adding product categories (Admin Only)
-  - Submitting new products assigned to your categories (Admin Only)
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-> [!TIP]
-> **Testing Admin Accounts:** If you want to log in as an administrator to bypass the `403 Forbidden` limits on adding products and categories, simply ensure your email address contains the word "**admin**" when you register (e.g. *admin_test@example.com*). The system will automatically upgrade your privileges!
+## Learn More
 
-### 4. Advanced API Documentation
-If you want to manually test raw API endpoints, you can access the automatically generated interactive documentation while the server is running:
-- **Swagger UI:** `http://localhost:8000/docs`
-- **ReDoc UI:** `http://localhost:8000/redoc`
+To learn more, take a look at the following resources:
 
----
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- [v0 Documentation](https://v0.app/docs) - learn about v0 and how to use it.
 
-## Overview 
-This project expertly combined separate Authentication & Users logic seamlessly alongside Categories & Products logic. Instead of scattered architecture, it utilizes a deeply integrated **SQLite database**, robust JSON Pydantic serialization models (fully backward-compatible with legacy database strings via `Optional`), and native frontend DOM connections.
-
-## Features Included
-- **User Authentication:** Token-based secure registration and login (using JWT and pure `bcrypt`).
-- **Users Management:** Protected `/users/me` endpoint.
-- **Product Management:** Full CRUD actions, advanced filtering, backwards-compatibility error handling, and python-native schemas.
-- **Category Management:** Full CRUD actions for organizing products easily.
-
-## Tech Stack
-- **Framework:** FastAPI
-- **Database ORM:** SQLAlchemy (Using SQLite database)
-- **Data Validation:** Pydantic
-- **Security:** Pure `bcrypt` (secure hashing) & `pyjwt` (Authentication Tokens)
+<a href="https://v0.app/chat/api/kiro/clone/Salma-Salah420/v0-e-commerce-frontend-app" alt="Open in Kiro"><img src="https://pdgvvgmkdvyeydso.public.blob.vercel-storage.com/open%20in%20kiro.svg?sanitize=true" /></a>
