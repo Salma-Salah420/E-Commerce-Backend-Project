@@ -4,6 +4,9 @@
 
 ![image](https://github.com/Salma-Salah420/E-Commerce-Backend-Project/blob/d0d2fe07b708718f422ae0639e7e38b9299151f5/Screenshot%202026-04-13%20145321.png)
 
+Customer: email: user@example.com | password: password123
+Admin: email: admin@example.com | password: admin123
+
 
 ## 📌 Overview
 
