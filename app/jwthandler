@@ -1,19 +1,32 @@
 import jwt
 from datetime import datetime, timedelta
+from passlib.context import CryptContext
 
-SECRET_KEY = "mysecret123"
+SECRET_KEY = "change_this_in_env"
 ALGORITHM = "HS256"
-EXPIRATION_MINUTES = 60
+EXP_MINUTES = 60
 
-def create_jwt(data: dict):
+pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+
+
+# -------- PASSWORD --------
+def get_password_hash(password: str):
+    return pwd_context.hash(password)
+
+def verify_password(plain, hashed):
+    return pwd_context.verify(plain, hashed)
+
+
+# -------- JWT --------
+def create_access_token(data: dict):
     payload = data.copy()
-    payload["exp"] = datetime.utcnow() + timedelta(minutes=EXPIRATION_MINUTES)
+    payload["exp"] = datetime.utcnow() + timedelta(minutes=EXP_MINUTES)
     return jwt.encode(payload, SECRET_KEY, algorithm=ALGORITHM)
 
-def verify_jwt(token: str):
+
+def verify_token(token: str):
     try:
-        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
-        return payload
+        return jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
     except jwt.ExpiredSignatureError:
         return None
     except jwt.InvalidTokenError:
