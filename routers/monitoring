@@ -1,0 +1,76 @@
+from fastapi import APIRouter
+from loguru import logger
+import os
+from datetime import datetime
+
+router = APIRouter(prefix="/monitoring", tags=["Monitoring"])
+
+@router.get("/health")
+async def health_check():
+   
+    return {
+        "status": "healthy",
+        "timestamp": datetime.now().isoformat(),
+        "service": "E-Commerce API"
+    }
+
+@router.get("/logs")
+async def view_logs(lines: int = 100):
+   
+    log_file = "logs/app.log"
+    
+    if not os.path.exists(log_file):
+        return {"error": "No logs found yet"}
+    
+    with open(log_file, "r", encoding="utf-8") as f:
+        all_lines = f.readlines()
+        last_lines = all_lines[-lines:] if len(all_lines) > lines else all_lines
+    
+    return {
+        "total_lines": len(all_lines),
+        "showing": len(last_lines),
+        "logs": last_lines
+    }
+
+@router.get("/logs/errors")
+async def view_errors():
+   
+    log_file = "logs/app.log"
+    
+    if not os.path.exists(log_file):
+        return {"error": "No logs found"}
+    
+    errors = []
+    with open(log_file, "r", encoding="utf-8") as f:
+        for line in f:
+            if "ERROR" in line or "❌" in line or "🔴" in line:
+                errors.append(line.strip())
+    
+    return {
+        "total_errors": len(errors),
+        "recent_errors": errors[-50:]
+    }
+
+@router.get("/stats")
+async def get_stats():
+    
+    log_file = "logs/app.log"
+    
+    if not os.path.exists(log_file):
+        return {"error": "No logs found"}
+    
+    total_requests = 0
+    errors = 0
+    
+    with open(log_file, "r", encoding="utf-8") as f:
+        for line in f:
+            if "REQUEST" in line:
+                total_requests += 1
+            if "ERROR" in line:
+                errors += 1
+    
+    return {
+        "total_requests": total_requests,
+        "total_errors": errors,
+        "error_rate": f"{(errors/total_requests*100):.2f}%" if total_requests > 0 else "0%"
+    }
