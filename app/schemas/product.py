@@ -4,14 +4,14 @@ from typing import Optional
 class ProductCreate(BaseModel):
     name: str
     category_id: int
-    stock: int = Field(..., ge=0)   # ✅ MUST be >= 0
+    stock: int = Field(..., ge=0)   
 
 
 class ProductResponse(BaseModel):
     id: int
     name: str
     category_id: Optional[int] = None
-    stock: int   # ✅ ADD THIS
+    stock: int   
 
 
     class Config:
